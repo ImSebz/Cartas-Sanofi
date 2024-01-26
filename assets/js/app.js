@@ -39,9 +39,9 @@ for (let card of shuffleDeck) {
     });
 
     cardElement.addEventListener('click', () => {
-        alert(`Card: ${card}`); // Display an alert with the card's id
+        alert(`Card: ${card}`); 
     });
-    
+
     deckContainer.append(cardElement);
 
 
