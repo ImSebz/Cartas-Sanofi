@@ -38,7 +38,12 @@ for (let card of shuffleDeck) {
         event.dataTransfer.setData('text/plain', cardElement.id);
     });
 
+    cardElement.addEventListener('click', () => {
+        alert(`Card: ${card}`); // Display an alert with the card's id
+    });
+    
     deckContainer.append(cardElement);
+
 
 }
 
@@ -64,13 +69,12 @@ deckContainer.addEventListener('click', () => {
     const cards = deckContainer.querySelectorAll('.card');  
 
         if (cards.length > 0) {
-            // cards[cards.length - 1].remove();
             let newCard = shuffleDeck.pop();
             console.log(newCard);
             // console.log(shuffleDeck);
         }
 
-        
+        //TODO:: Agregar información al dar click en cada carta
     
 });
 
