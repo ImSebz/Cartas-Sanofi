@@ -39,7 +39,7 @@ for (let card of shuffleDeck) {
     });
 
     cardElement.addEventListener('click', () => {
-        alert(`Card: ${card}`); 
+        alert(`Carta: ${card}`); 
     });
 
     deckContainer.append(cardElement);
