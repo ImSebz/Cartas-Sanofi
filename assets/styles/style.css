@@ -9,28 +9,31 @@
     height: 100vh;
     display: flex;
     position: relative;
+    background-color: rgb(31, 130, 43);
+    padding: 20px;
+}
+
+.symbol-container{
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(31, 130, 43);
+    /* background: black; */
+    width: 75%;
+    height: 300px;
 }
 
-.deck{
-    position: relative;
-    float: left;
-    background: black;
+.deck-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: black; */
+    width: 25%;
+    height: 300px;
 
-}
-
-.card-back{
-    position: relative;
 }
 
 .card {
     position: absolute;
-    float: left;
-    top: 5%;
-    padding: 15px;
-    z-index: 1;
     cursor: pointer;
 }
 
@@ -39,8 +42,14 @@
     height: auto;
 }
 
-.card-back img {
+
+.a-container, .b-container, .c-container, .d-container, .e-container {
+    border: 2px solid #000; /* Adjust as needed */
+    padding: 10px; /* Adjust as needed */
+    margin: 10px; /* Adjust as needed */
     width: 150px;
-    height: auto;
+    height: 240px;
+    border-radius: 10%;
+    background: rgb(176, 183, 177);
 }
 

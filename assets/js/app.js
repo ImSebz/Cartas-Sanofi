@@ -5,7 +5,7 @@ const types = ['C', 'D', 'H', 'S'],
     specials = ['A', 'J', 'Q', 'K'];
 
 // Referencias del HTML
-const deckContainer = document.querySelector('#deck-container');
+const deckContainer = document.querySelector('.deck-container');
 
 const createDeck = () => {
 
@@ -37,10 +37,14 @@ for (let card of shuffleDeck) {
 
 deckContainer.addEventListener('click', () => {
     const cards = deckContainer.querySelectorAll('.card');
-    if (cards.length > 0) {
-        cards[cards.length - 1].remove();
-        shuffleDeck.pop();
-        console.log(shuffleDeck);
-    }
+
+        if (cards.length > 0) {
+            // cards[cards.length - 1].remove();
+            shuffleDeck.pop();
+            console.log(shuffleDeck);
+        }
+
+        
+    
 });
 
