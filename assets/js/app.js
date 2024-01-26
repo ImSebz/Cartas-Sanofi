@@ -25,23 +25,49 @@ const createDeck = () => {
 createDeck();
 
 let shuffleDeck = _.shuffle(deck);
-console.log(shuffleDeck);
+// console.log(shuffleDeck);
 
 for (let card of shuffleDeck) {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
+    cardElement.id = card;
+    cardElement.draggable = true;
     cardElement.innerHTML = `<img src="assets/cards/${card}.png" alt="card">`;
 
+    cardElement.addEventListener('dragstart', (event) => {
+        event.dataTransfer.setData('text/plain', cardElement.id);
+    });
+
     deckContainer.append(cardElement);
+
 }
 
+let containers = document.querySelectorAll('.a-container, .b-container, .c-container, .d-container, .e-container');
+
+for (let container of containers) {
+    container.addEventListener('dragover', (event) => {
+        event.preventDefault(); // Prevent the default to allow drop
+    });
+
+    container.addEventListener('drop', (event) => {
+        event.preventDefault();
+        let cardId = event.dataTransfer.getData('text/plain');
+        let card = document.getElementById(cardId);
+        container.append(card);
+    });
+}
+
+
+
+
 deckContainer.addEventListener('click', () => {
-    const cards = deckContainer.querySelectorAll('.card');
+    const cards = deckContainer.querySelectorAll('.card');  
 
         if (cards.length > 0) {
-            // cards[cards.length - 1].remove();
-            shuffleDeck.pop();
-            console.log(shuffleDeck);
+            cards[cards.length - 1].remove();
+            let newCard = shuffleDeck.pop();
+            console.log(newCard);
+            // console.log(shuffleDeck);
         }
 
         

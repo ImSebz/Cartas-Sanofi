@@ -26,10 +26,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background: black; */
     width: 25%;
     height: 300px;
 
+}
+
+.card-back{
+    position: absolute;
+}
+
+.card-back img {
+    width: 150px;
+    height: auto;
 }
 
 .card {
