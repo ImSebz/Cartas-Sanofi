@@ -6,6 +6,7 @@ const types = ['C', 'D', 'H', 'S'],
 
 // Referencias del HTML
 const deckContainer = document.querySelector('.deck-container');
+const containers = document.querySelectorAll('.a-container, .b-container, .c-container, .d-container, .e-container');
 
 const createDeck = () => {
 
@@ -25,56 +26,89 @@ const createDeck = () => {
 createDeck();
 
 let shuffleDeck = _.shuffle(deck);
-// console.log(shuffleDeck);
+const cardsTextDiv = document.querySelector('.cards-text');
 
-for (let card of shuffleDeck) {
+for (let cardId of shuffleDeck) {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
-    cardElement.id = card;
-    cardElement.draggable = true;
-    cardElement.innerHTML = `<img src="assets/cards/${card}.png" alt="card">`;
+    cardElement.id = cardId;
+    cardElement.innerHTML = `<img src="assets/cards/${cardId}.png" alt="card">`;
+
+    cardsTextDiv.textContent = `Carta: ${cardId}`;
 
     cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
     });
 
+    cardElement.addEventListener('dragend', () => {
+        // Wait for the DOM updates to complete
+        setTimeout(() => {
+            // Get all the cards in the deck container
+            const cardsInDeck = deckContainer.querySelectorAll('.card');
+    
+            // If there are cards left in the deck
+            if (cardsInDeck.length > 0) {
+                // Get the last card in the deck
+                const lastCardInDeck = cardsInDeck[cardsInDeck.length - 1];
+    
+                // Update the cardsTextDiv content with the last card in the deck
+                cardsTextDiv.textContent = `Carta: ${lastCardInDeck.id}`;
+            } else {
+                // If no cards are left in the deck, clear the text
+                cardsTextDiv.textContent = '';
+            }
+        }, 0);
+    });
+
     cardElement.addEventListener('click', () => {
-        alert(`Carta: ${card}`); 
+        alert(`Carta: ${cardId}`);
+        // cardsTextDiv.textContent = `Carta: ${cardId}`;
     });
 
     deckContainer.append(cardElement);
 
-
 }
 
-let containers = document.querySelectorAll('.a-container, .b-container, .c-container, .d-container, .e-container');
 
 for (let container of containers) {
-    container.addEventListener('dragover', (event) => {
-        event.preventDefault(); // Prevent the default to allow drop
-    });
+    container.addEventListener('dragover', event => event.preventDefault());
 
-    container.addEventListener('drop', (event) => {
-        event.preventDefault();
+    container.addEventListener('drop', event => {
         let cardId = event.dataTransfer.getData('text/plain');
         let card = document.getElementById(cardId);
+        if (deckContainer.querySelectorAll('.card').length === 0) {
+            // If not, prevent the drop and return
+            event.preventDefault();
+            return;
+        }
+
+        event.preventDefault();
         container.append(card);
+        adjustCardMargins();
     });
 }
 
+const adjustCardMargins = () => {
+    // Select all containers
+    const containers = document.querySelectorAll('.a-container, .b-container, .c-container, .d-container, .e-container');
 
+    // Loop through each container
+    containers.forEach(container => {
+        // Select all cards in the current container
+        const cards = container.querySelectorAll('.card');
 
+        // Loop through each card
+        cards.forEach((card, index) => {
+            // Add a top margin to the card, increasing with each new card
 
-deckContainer.addEventListener('click', () => {
-    const cards = deckContainer.querySelectorAll('.card');  
+            if (index == 0) {
+                card.style.marginTop = '0px';
+                return;
+            }
+            card.style.marginTop = `${45 * (index + 1)}px`;
+        });
+    });
+}
 
-        if (cards.length > 0) {
-            let newCard = shuffleDeck.pop();
-            console.log(newCard);
-            // console.log(shuffleDeck);
-        }
-
-        //TODO:: Agregar información al dar click en cada carta
-    
-});
-
+// Call the function initially
+adjustCardMargins();
