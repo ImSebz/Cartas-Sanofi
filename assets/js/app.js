@@ -55,14 +55,13 @@ for (let cardId of shuffleDeck) {
                 cardsTextDiv.textContent = `Carta: ${lastCardInDeck.id}`;
             } else {
                 // If no cards are left in the deck, clear the text
-                cardsTextDiv.textContent = '';
+                cardsTextDiv.textContent = 'Sanofi';
             }
         }, 0);
     });
 
     cardElement.addEventListener('click', () => {
         alert(`Carta: ${cardId}`);
-        // cardsTextDiv.textContent = `Carta: ${cardId}`;
     });
 
     deckContainer.append(cardElement);
