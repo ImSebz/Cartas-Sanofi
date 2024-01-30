@@ -45,12 +45,12 @@ for (let cardId of shuffleDeck) {
         setTimeout(() => {
             // Get all the cards in the deck container
             const cardsInDeck = deckContainer.querySelectorAll('.card');
-    
+
             // If there are cards left in the deck
             if (cardsInDeck.length > 0) {
                 // Get the last card in the deck
                 const lastCardInDeck = cardsInDeck[cardsInDeck.length - 1];
-    
+
                 // Update the cardsTextDiv content with the last card in the deck
                 cardsTextDiv.textContent = `Carta: ${lastCardInDeck.id}`;
             } else {
