@@ -4,6 +4,13 @@ let deck = [];
 const types = ['C', 'D', 'H', 'S'],
     specials = ['A', 'J', 'Q', 'K'];
 
+    const containerCardTypes = {
+        'a-container': 'C',
+        'b-container': 'D',
+        'c-container': 'H',
+        'd-container': 'S'
+    };
+
 // Referencias del HTML
 const deckContainer = document.querySelector('.deck-container');
 const containers = document.querySelectorAll('.a-container, .b-container, .c-container, .d-container, .e-container');
@@ -77,6 +84,20 @@ for (let container of containers) {
         let card = document.getElementById(cardId);
         if (deckContainer.querySelectorAll('.card').length === 0) {
             // If not, prevent the drop and return
+            event.preventDefault();
+            return;
+        }
+
+        // Extract the type of the card
+        let cardType = cardId.slice(-1);
+
+        // Get the container's class
+        let containerClass = container.className.split(' ')[0];
+
+        // Check if the card's type matches the container's allowed type
+        if (cardType !== containerCardTypes[containerClass]) {
+            // If they don't match, prevent the drop and return
+            alert('No puedes poner esa carta aquí');
             event.preventDefault();
             return;
         }
