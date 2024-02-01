@@ -43,7 +43,6 @@ const cardTexts = {
     '7B': 'Conéctate cuando lo necesites y organiza tu presencialidad semanalmente',
     '7X': 'Porque tu salud es primero, tendrás un beneficio económico por tomas de radiografías',
     '8B': 'Protege tu legado con nuestro seguro de vida',
-
 };
 
 // Referencias del HTML
@@ -106,7 +105,6 @@ if (shuffleDeck.length > 0 && cardTexts[shuffleDeck[shuffleDeck.length - 1]]) {
     cardsTextDiv.textContent = cardTexts[shuffleDeck[shuffleDeck.length - 1]];
 }
 
-
 for (let container of containers) {
     container.addEventListener('dragover', event => event.preventDefault());
 
@@ -159,5 +157,4 @@ const adjustCardMargins = () => {
     });
 }
 
-// Call the function initially
 adjustCardMargins();

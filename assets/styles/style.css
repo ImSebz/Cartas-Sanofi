@@ -14,7 +14,7 @@
     padding: 1.25rem;
 }
 
-.symbol-container{
+.symbol-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
     width: 90%;
 }
 
-.deck-container{
+.deck-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,7 +85,7 @@
     width: 28.125rem;
 }
 
-.card-back{
+.card-back {
     position: absolute;
 }
 
@@ -102,12 +102,16 @@
     width: 13.75rem;
 }
 
-.a-container, .x-container, .b-container, .r-container, .s-container {
-    border: 10px solid #ffffff; 
+.a-container,
+.x-container,
+.b-container,
+.r-container,
+.s-container {
+    border: 10px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.625rem; 
+    padding: 0.625rem;
     margin-top: 15px;
     width: 11.25rem;
     height: 15rem;
@@ -116,7 +120,11 @@
     color: #ffffff;
 }
 
-.a-container img, .x-container img, .b-container img, .r-container img, .s-container img {
+.a-container img,
+.x-container img,
+.b-container img,
+.r-container img,
+.s-container img {
     width: 11.25rem;
 }
 
@@ -125,7 +133,8 @@
         padding: 1rem;
     }
 
-    .symbol-container, .deck-container {
+    .symbol-container,
+    .deck-container {
         width: 90%;
         margin-left: 5%;
     }
@@ -138,8 +147,6 @@
         margin-left: 1rem;
     }
 
-    
-
     .card img {
         width: 12.75rem;
     }
@@ -148,7 +155,11 @@
         width: 9.75rem;
     }
 
-    .a-container img, .x-container img, .b-container img, .r-container img, .s-container img {
+    .a-container img,
+    .x-container img,
+    .b-container img,
+    .r-container img,
+    .s-container img {
         width: 8.25rem;
     }
 
@@ -161,9 +172,13 @@
         width: 90%;
     }
 
-    .a-container, .x-container, .b-container, .r-container, .s-container {
-        border: 0.625rem solid #ffffff; 
-        padding: 0.5rem; 
+    .a-container,
+    .x-container,
+    .b-container,
+    .r-container,
+    .s-container {
+        border: 0.625rem solid #ffffff;
+        padding: 0.5rem;
         width: 9rem;
         height: 12rem;
         border-radius: 0.75rem;
