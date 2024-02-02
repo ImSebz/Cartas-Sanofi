@@ -85,7 +85,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.45rem;
+    font-size: 1.35rem;
     font-family: 'SanofiSerif-BoldItalic', sans-serif;
     padding: 1rem;
     width: 85%;
@@ -165,7 +165,7 @@ body {
 .b-container img,
 .r-container img,
 .s-container img {
-    width: 9.25rem;
+    width: 5.25rem;
 }
 
 @media screen and (max-width: 1366px) {
@@ -252,6 +252,6 @@ body {
     .b-container img,
     .r-container img,
     .s-container img {
-        width: 8.25rem;
+        width: 4.25rem;
     }
 }

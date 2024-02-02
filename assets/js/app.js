@@ -65,11 +65,11 @@ for (let cardId of shuffleDeck) {
     cardElement.id = cardId;
     cardElement.innerHTML = `<img src="assets/cartas/${cardId}.png" alt="card">`;
 
-    cardElement.addEventListener('dragstart', (event) => {
+    cardElement.addEventListener('touchstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
     });
 
-    cardElement.addEventListener('dragend', () => {
+    cardElement.addEventListener('touchend', () => {
         // Wait for the DOM updates to complete
         setTimeout(() => {
             // Get all the cards in the deck container
