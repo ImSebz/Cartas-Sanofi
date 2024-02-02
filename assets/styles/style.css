@@ -1,10 +1,26 @@
+@font-face {
+    font-family: 'SanofiSerif-Bold';
+    src: url('/assets/Fonts/SanofiSerif-Bold.otf');
+}
+
+@font-face {
+    font-family: 'SanofiSerif-BoldItalic';
+    src: url('/assets/Fonts/SanofiSerif-BoldItalic.otf');
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    overflow: hidden;
+}
+
 .container {
+    position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -16,11 +32,12 @@
 
 .symbol-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 75rem;
     height: 18.75rem;
-    gap: 2.5rem;
+    margin-left: 50px;
+    margin-top: 20px;
 }
 
 .info-symbols-container {
@@ -34,8 +51,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    margin-left: 70px;
     align-items: center;
-    margin-left: 8.25rem;
 }
 
 .text-container {
@@ -50,10 +67,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    
 }
 
 .text-img {
     width: 90%;
+    
 }
 
 .cards-text {
@@ -65,11 +85,10 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.25rem;
+    font-size: 1.45rem;
+    font-family: 'SanofiSerif-BoldItalic', sans-serif;
     padding: 1rem;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    width: 90%;
+    width: 85%;
 }
 
 .deck-container {
@@ -102,6 +121,28 @@
     width: 13.75rem;
 }
 
+.logo-baraja {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 58px;
+}
+
+.img-baraja {
+    width: 100%;
+}
+
+.logo-sanofi-container {
+    position: absolute; /* Position the logo absolutely within the container */
+    bottom: 10%; /* Align it to the bottom */
+    left: 5%;
+}
+
+.logo-sanofi-container img {
+    width: 100%;
+}
+
+
 .a-container,
 .x-container,
 .b-container,
@@ -111,10 +152,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.625rem;
     margin-top: 15px;
-    width: 11.25rem;
-    height: 15rem;
+    width: 9.25rem;
+    height: 13rem;
     border-radius: 0.9375rem;
     background-color: #23004C;
     color: #ffffff;
@@ -125,15 +165,27 @@
 .b-container img,
 .r-container img,
 .s-container img {
-    width: 11.25rem;
+    width: 9.25rem;
 }
 
 @media screen and (max-width: 1366px) {
+
+    body {
+        overflow: hidden;
+    }
+
     .container {
         padding: 1rem;
     }
 
-    .symbol-container,
+    .symbol-container {
+        width: 100%;
+        margin-left: 40px;
+        margin-top: 20px;
+        justify-content: center;
+        gap: 2rem;
+    }
+    
     .deck-container {
         width: 90%;
         margin-left: 5%;
@@ -145,26 +197,24 @@
 
     .cards-container {
         margin-left: 1rem;
+        margin-top: -2%;
     }
 
     .card img {
-        width: 12.75rem;
+        width: 9.75rem;
     }
 
     .card-back img {
         width: 9.75rem;
     }
 
-    .a-container img,
-    .x-container img,
-    .b-container img,
-    .r-container img,
-    .s-container img {
-        width: 8.25rem;
-    }
-
+    
     .text-img {
         width: 100%;
+    }
+    
+    .text-container {
+        margin-top: 0;
     }
 
     .cards-text {
@@ -172,6 +222,19 @@
         width: 90%;
     }
 
+    .logo-baraja {
+        margin-top: 20px;
+    }
+    
+    .img-baraja {
+        width: 70%;
+    }
+
+    .logo-sanofi-container img {
+        width: 90%;
+    }
+    
+    
     .a-container,
     .x-container,
     .b-container,
@@ -182,5 +245,13 @@
         width: 9rem;
         height: 12rem;
         border-radius: 0.75rem;
+    }
+
+    .a-container img,
+    .x-container img,
+    .b-container img,
+    .r-container img,
+    .s-container img {
+        width: 8.25rem;
     }
 }

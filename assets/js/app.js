@@ -1,6 +1,6 @@
 'use strict';
 
-let deck = [];
+const deck = [];
 const types = ['C', 'D', 'H', 'S'],
     specials = ['A', 'J', 'Q', 'K'];
 
@@ -25,7 +25,7 @@ const cardTexts = {
     '1B': 'Contamos con apoyo emocional y programa de asesoramiento',
     '1R': 'Sabemos lo dificil que es la estabilidad, por eso te reconocemos por todo lo alto',
     '1S': 'Experimenta los beneficios de la salud con los medicamentos de Sanofi',
-    '1X': 'Apoyo económico para la llegada de un nuevo hijo a tu familia.',
+    '1X': 'Apoyo económico para la llegada de un nuevo hijo a tu familia',
     '2A': 'Aprende más de 18 idiomas en una sola plataforma con nosotros',
     '2B': 'Nuestro programar Flex Time te ayudará a organizar tu agenda',
     '2R': 'Reconcerte a ti y a los demas es un trabajo difícil, la empatía es una gran virtud',
@@ -50,7 +50,6 @@ const deckContainer = document.querySelector('.deck-container');
 const containers = document.querySelectorAll('.a-container, .x-container, .b-container, .r-container, .s-container');
 
 const createDeck = () => {
-    deck = [];
     for (let cardType in cardTypes) {
         for (let i = 1; i <= cardTypes[cardType]; i++) {
             deck.push(i + cardType);
@@ -59,7 +58,7 @@ const createDeck = () => {
 }
 createDeck();
 
-let shuffleDeck = _.shuffle(deck);
+const shuffleDeck = _.shuffle(deck);
 const cardsTextDiv = document.querySelector('.cards-text');
 
 for (let cardId of shuffleDeck) {
@@ -94,10 +93,6 @@ for (let cardId of shuffleDeck) {
         }, 0);
     });
 
-    cardElement.addEventListener('click', () => {
-        alert(`Carta: ${cardId}`);
-    });
-
     deckContainer.append(cardElement);
 }
 
@@ -109,8 +104,8 @@ for (let container of containers) {
     container.addEventListener('dragover', event => event.preventDefault());
 
     container.addEventListener('drop', event => {
-        let cardId = event.dataTransfer.getData('text/plain');
-        let card = document.getElementById(cardId);
+        const cardId = event.dataTransfer.getData('text/plain');
+        const card = document.getElementById(cardId);
         if (deckContainer.querySelectorAll('.card').length === 0) {
             // If not, prevent the drop and return
             event.preventDefault();
@@ -118,10 +113,10 @@ for (let container of containers) {
         }
 
         // Extract the type of the card
-        let cardType = cardId.slice(-1);
+        const cardType = cardId.slice(-1);
 
         // Get the container's class
-        let containerClass = container.className.split(' ')[0];
+        const containerClass = container.className.split(' ')[0];
 
         // Check if the card's type matches the container's allowed type
         if (cardType !== containerCardTypes[containerClass]) {
