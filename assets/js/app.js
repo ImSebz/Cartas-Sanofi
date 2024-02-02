@@ -1,8 +1,6 @@
 'use strict';
 
 const deck = [];
-const types = ['C', 'D', 'H', 'S'],
-    specials = ['A', 'J', 'Q', 'K'];
 
 const containerCardTypes = {
     'a-container': 'A',
