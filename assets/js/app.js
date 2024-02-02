@@ -65,11 +65,11 @@ for (let cardId of shuffleDeck) {
     cardElement.id = cardId;
     cardElement.innerHTML = `<img src="assets/cartas/${cardId}.png" alt="card">`;
 
-    cardElement.addEventListener('touchstart', (event) => {
+    cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
     });
 
-    cardElement.addEventListener('touchend', () => {
+    cardElement.addEventListener('dragend', () => {
         // Wait for the DOM updates to complete
         setTimeout(() => {
             // Get all the cards in the deck container
@@ -131,7 +131,6 @@ for (let container of containers) {
 }
 
 const adjustCardMargins = () => {
-
     // Loop through each container
     containers.forEach(container => {
         // Select all cards in the current container
@@ -140,7 +139,6 @@ const adjustCardMargins = () => {
         // Loop through each card
         cards.forEach((card, index) => {
             // Add a top margin to the card, increasing with each new card
-
             if (index == 0) {
                 card.style.marginTop = '0px';
                 return;
@@ -149,5 +147,6 @@ const adjustCardMargins = () => {
         });
     });
 }
+
 
 adjustCardMargins();

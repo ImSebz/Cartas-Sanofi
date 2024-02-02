@@ -85,10 +85,15 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-family: 'SanofiSerif-BoldItalic', sans-serif;
     padding: 1rem;
     width: 85%;
+}
+
+.logo-symbols-container {
+    width: 100px !important;
+
 }
 
 .deck-container {
@@ -165,7 +170,7 @@ body {
 .b-container img,
 .r-container img,
 .s-container img {
-    width: 5.25rem;
+    width: 9.25rem;
 }
 
 @media screen and (max-width: 1366px) {
@@ -230,6 +235,11 @@ body {
         width: 70%;
     }
 
+    .logo-symbols-container {
+        width: 80px !important;
+    
+    }
+
     .logo-sanofi-container img {
         width: 90%;
     }
@@ -252,6 +262,6 @@ body {
     .b-container img,
     .r-container img,
     .s-container img {
-        width: 4.25rem;
+        width: 8.25rem;
     }
 }
