@@ -59,6 +59,9 @@ createDeck();
 const shuffleDeck = _.shuffle(deck);
 const cardsTextDiv = document.querySelector('.cards-text');
 
+let draggedCard = null;
+let draggedCardCopy = null;
+
 for (let cardId of shuffleDeck) {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
@@ -67,25 +70,37 @@ for (let cardId of shuffleDeck) {
 
     cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
+        draggedCard = cardElement;
+    
+        // Crear una copia de la tarjeta y mover esa copia
+        draggedCardCopy = cardElement.cloneNode(true);
+        draggedCardCopy.style.position = 'absolute';
+        draggedCardCopy.style.pointerEvents = 'none'; // Agregar esta línea
+        document.body.appendChild(draggedCardCopy);
+    });
+
+    cardElement.addEventListener('drag', (event) => {
+        event.preventDefault();
+    
+        // Mover la copia de la tarjeta a la posición del cursor
+        draggedCardCopy.style.left = `${event.pageX - 100}px`;
+        draggedCardCopy.style.top = `${event.pageY - 100}px`;
     });
 
     cardElement.addEventListener('dragend', () => {
-        // Wait for the DOM updates to complete
+        // Eliminar la copia de la tarjeta
+        document.body.removeChild(draggedCardCopy);
+        draggedCardCopy = null;
+
+        // Actualizar el texto de la tarjeta
         setTimeout(() => {
-            // Get all the cards in the deck container
             const cardsInDeck = deckContainer.querySelectorAll('.card');
-
-            // If there are cards left in the deck
             if (cardsInDeck.length > 0) {
-                // Get the last card in the deck
                 const lastCardInDeck = cardsInDeck[cardsInDeck.length - 1];
-
-                // If the card ID exists in the cardTexts object, use the corresponding text
                 if (cardTexts[lastCardInDeck.id]) {
                     cardsTextDiv.textContent = cardTexts[lastCardInDeck.id];
                 }
             } else {
-                // If no cards are left in the deck, clear the text
                 cardsTextDiv.textContent = 'Sanofi';
             }
         }, 0);
@@ -94,37 +109,39 @@ for (let cardId of shuffleDeck) {
     deckContainer.append(cardElement);
 }
 
+
+// Mostrar el texto de la última carta en el mazo
 if (shuffleDeck.length > 0 && cardTexts[shuffleDeck[shuffleDeck.length - 1]]) {
     cardsTextDiv.textContent = cardTexts[shuffleDeck[shuffleDeck.length - 1]];
 }
 
 for (let container of containers) {
-    container.addEventListener('dragover', event => event.preventDefault());
+    container.addEventListener('dragover', event => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'move';
+    });
 
     container.addEventListener('drop', event => {
-        const cardId = event.dataTransfer.getData('text/plain');
-        const card = document.getElementById(cardId);
-        if (deckContainer.querySelectorAll('.card').length === 0) {
-            // If not, prevent the drop and return
-            event.preventDefault();
-            return;
-        }
+        event.preventDefault();
 
-        // Extract the type of the card
+        // Extraer el ID de la tarjeta
+        const cardId = event.dataTransfer.getData('text/plain');
+
+        // Extraer el tipo de la tarjeta
         const cardType = cardId.slice(-1);
 
-        // Get the container's class
+        // Obtener la clase del contenedor
         const containerClass = container.className.split(' ')[0];
 
-        // Check if the card's type matches the container's allowed type
+        // Verificar si el tipo de tarjeta coincide con el tipo permitido del contenedor
         if (cardType !== containerCardTypes[containerClass]) {
-            // If they don't match, prevent the drop and return
+            // Si no coinciden, prevenir la caída y retornar
             alert('No puedes poner esa carta aquí');
-            event.preventDefault();
             return;
         }
 
-        event.preventDefault();
+        // Si coinciden, mover la tarjeta al contenedor
+        const card = document.getElementById(cardId);
         container.append(card);
         adjustCardMargins();
     });
