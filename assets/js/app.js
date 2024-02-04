@@ -71,7 +71,7 @@ for (let cardId of shuffleDeck) {
     cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
         draggedCard = cardElement;
-    
+
         // Crear una copia de la tarjeta y mover esa copia
         draggedCardCopy = cardElement.cloneNode(true);
         draggedCardCopy.style.position = 'absolute';
@@ -81,7 +81,7 @@ for (let cardId of shuffleDeck) {
 
     cardElement.addEventListener('drag', (event) => {
         event.preventDefault();
-    
+
         // Mover la copia de la tarjeta a la posición del cursor
         draggedCardCopy.style.left = `${event.pageX - 100}px`;
         draggedCardCopy.style.top = `${event.pageY - 100}px`;
@@ -102,6 +102,9 @@ for (let cardId of shuffleDeck) {
                 }
             } else {
                 cardsTextDiv.textContent = 'Sanofi';
+
+                const popup = document.getElementById('popup');
+                popup.style.display = 'block';
             }
         }, 0);
     });
@@ -164,6 +167,19 @@ const adjustCardMargins = () => {
         });
     });
 }
+
+const closePopupButton = document.getElementById('closePopup');
+closePopupButton.addEventListener('click', () => {
+    // Cerrar el popup
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none';
+
+    // Recargar la página
+
+    setTimeout(() => {
+        location.reload();
+    }, 1000);
+});
 
 
 adjustCardMargins();
