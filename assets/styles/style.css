@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'SanofiSerif-Bold';
-    src: url('/assets/Fonts/SanofiSerif-Bold.otf');
+    src: url('./fonts/SanofiSerif-Bold.otf');
 }
 
 @font-face {
     font-family: 'SanofiSerif-BoldItalic';
-    src: url('/assets/Fonts/SanofiSerif-BoldItalic.otf');
+    src: url('./fonts/SanofiSerif-BoldItalic.otf');
 }
 
 
