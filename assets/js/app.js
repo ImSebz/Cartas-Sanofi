@@ -72,7 +72,6 @@ for (let cardId of shuffleDeck) {
     cardElement.innerHTML = `<img src="assets/cartas/${cardId}.png" alt="card">`;
 
     //Eventos Drag and Drop
-
     cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
         draggedCard = cardElement;
@@ -115,7 +114,6 @@ for (let cardId of shuffleDeck) {
     });
 
     //Eventos Touch
-
     cardElement.addEventListener('touchstart', (event) => {
 
         console.log('touchstart card');
@@ -228,7 +226,6 @@ if (shuffleDeck.length > 0 && cardTexts[shuffleDeck[shuffleDeck.length - 1]]) {
 }
 
 // Contenedores para drag and drop
-
 for (let container of containers) {
     container.addEventListener('dragover', event => {
         event.preventDefault();
@@ -262,14 +259,14 @@ for (let container of containers) {
 }
 
 const adjustCardMargins = () => {
-    // Loop through each container
+    // Loop para cada contenedor
     containers.forEach(container => {
         // Select all cards in the current container
         const cards = container.querySelectorAll('.card');
 
-        // Loop through each card
+        //Loop por cada carta
         cards.forEach((card, index) => {
-            // Add a top margin to the card, increasing with each new card
+            // Agregar un margen superior a cada carta
             if (index == 0) {
                 card.style.marginTop = '0px';
                 return;
@@ -287,7 +284,6 @@ closePopupButton.addEventListener('click', () => {
     popup.style.display = 'none';
 
     // Recargar la página
-
     setTimeout(() => {
         location.reload();
     }, 1000);
