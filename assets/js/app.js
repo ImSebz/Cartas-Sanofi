@@ -2,6 +2,10 @@
 
 const deck = [];
 
+let draggedCard = null;
+let draggedCardCopy = null;
+let targetContainer = null;
+
 const containerCardTypes = {
     'a-container': 'A',
     'x-container': 'X',
@@ -46,6 +50,8 @@ const cardTexts = {
 // Referencias del HTML
 const deckContainer = document.querySelector('.deck-container');
 const containers = document.querySelectorAll('.a-container, .x-container, .b-container, .r-container, .s-container');
+const closePopupButton = document.getElementById('closePopup');
+const closePopupCarta = document.getElementById('closePopupCarta');
 
 const createDeck = () => {
     for (let cardType in cardTypes) {
@@ -59,14 +65,13 @@ createDeck();
 const shuffleDeck = _.shuffle(deck);
 const cardsTextDiv = document.querySelector('.cards-text');
 
-let draggedCard = null;
-let draggedCardCopy = null;
-
 for (let cardId of shuffleDeck) {
     const cardElement = document.createElement('div');
     cardElement.classList.add('card');
     cardElement.id = cardId;
     cardElement.innerHTML = `<img src="assets/cartas/${cardId}.png" alt="card">`;
+
+    //Eventos Drag and Drop
 
     cardElement.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', cardElement.id);
@@ -109,14 +114,120 @@ for (let cardId of shuffleDeck) {
         }, 0);
     });
 
-    deckContainer.append(cardElement);
-}
+    //Eventos Touch
 
+    cardElement.addEventListener('touchstart', (event) => {
+
+        console.log('touchstart card');
+
+        if (cardElement.classList.contains('placed')) {
+            event.preventDefault(); // Si la tarjeta tiene la clase 'placed', prevenir el evento de toque
+        } else {
+            event.preventDefault();
+            const touch = event.changedTouches[0];
+            draggedCard = cardElement;
+
+            // Crear una copia de la tarjeta y mover esa copia
+            draggedCardCopy = cardElement.cloneNode(true);
+            draggedCardCopy.style.position = 'absolute';
+            document.body.appendChild(draggedCardCopy);
+
+            // Mover la copia de la tarjeta a la posición del toque
+            draggedCardCopy.style.left = `${touch.pageX - 100}px`;
+            draggedCardCopy.style.top = `${touch.pageY - 100}px`;
+        }
+    });
+
+    cardElement.addEventListener('touchmove', (event) => {
+
+        console.log('touchmove card');
+        event.preventDefault();
+        const touch = event.changedTouches[0];
+
+        // Mueve la copia de la tarjeta a la posición del toque
+        draggedCardCopy.style.left = `${touch.pageX - 100}px`;
+        draggedCardCopy.style.top = `${touch.pageY - 100}px`;
+    });
+
+    cardElement.addEventListener('touchend', (event) => {
+        console.log('touchend card');
+    
+        // Eliminal la copia de la tarjeta
+        if (draggedCardCopy) {
+            document.body.removeChild(draggedCardCopy);
+            draggedCardCopy = null;
+        }
+    
+        // Revise si la tarjeta arrastrada existe
+        if (draggedCard) {
+            // Traer las coordenadas de touchend
+            const touch = event.changedTouches[0];
+            const x = touch.clientX;
+            const y = touch.clientY;
+    
+            // Revisa si las coordenadas de touchend están dentro de un contenedor
+            containers.forEach(container => {
+                const rect = container.getBoundingClientRect();
+                if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+                    // Las coordenadas de touchend están dentro del contenedor
+
+                    // Traer el tipo de la tarjeta
+                    const cardType = draggedCard.id.slice(-1);
+
+                    // Traer el tipo del contenedor
+                    const containerType = containerCardTypes[container.className];
+    
+                    if (cardType === containerType) {
+                        // Eliminar la tarjeta del mazo
+                        deckContainer.removeChild(draggedCard);
+        
+                        // Agregar la tarjeta al contenedor
+                        container.appendChild(draggedCard);
+
+                        // Agregar la clase 'placed' a la tarjeta
+                        draggedCard.classList.add('placed');
+        
+                    } else {
+                        // Si no coinciden, prevenir la caída y retornar
+                        // Muestra un mensaje de popup
+                        popupCarta.style.display = 'block';
+                    }
+
+                    setTimeout(() => {
+                        const cardsInDeck = deckContainer.querySelectorAll('.card');
+                        if (cardsInDeck.length > 0) {
+                            const lastCardInDeck = cardsInDeck[cardsInDeck.length - 1];
+                            if (cardTexts[lastCardInDeck.id]) {
+                                cardsTextDiv.textContent = cardTexts[lastCardInDeck.id];
+                            }
+                        } else {
+                            cardsTextDiv.textContent = 'Sanofi';
+                    
+                            const popup = document.getElementById('popup');
+                            popup.style.display = 'block';
+                        }
+                    }, 0);
+    
+                    // Ajustar los márgenes de las tarjetas
+                    adjustCardMargins();
+                }
+            });
+    
+            // Limpiar la tarjeta arrastrada
+            draggedCard = null;
+        }
+    });
+    
+    deckContainer.append(cardElement);
+    
+}
 
 // Mostrar el texto de la última carta en el mazo
 if (shuffleDeck.length > 0 && cardTexts[shuffleDeck[shuffleDeck.length - 1]]) {
     cardsTextDiv.textContent = cardTexts[shuffleDeck[shuffleDeck.length - 1]];
 }
+
+// Contenedores para drag and drop
 
 for (let container of containers) {
     container.addEventListener('dragover', event => {
@@ -139,7 +250,7 @@ for (let container of containers) {
         // Verificar si el tipo de tarjeta coincide con el tipo permitido del contenedor
         if (cardType !== containerCardTypes[containerClass]) {
             // Si no coinciden, prevenir la caída y retornar
-            alert('No puedes poner esa carta aquí');
+            popupCarta.style.display = 'block';
             return;
         }
 
@@ -167,8 +278,9 @@ const adjustCardMargins = () => {
         });
     });
 }
+adjustCardMargins();
 
-const closePopupButton = document.getElementById('closePopup');
+
 closePopupButton.addEventListener('click', () => {
     // Cerrar el popup
     const popup = document.getElementById('popup');
@@ -181,5 +293,10 @@ closePopupButton.addEventListener('click', () => {
     }, 1000);
 });
 
+closePopupCarta.addEventListener('click', () => {
+    // Cerrar el popup
+    const popupCarta = document.getElementById('popupCarta');
+    popupCarta.style.display = 'none';
+});
 
-adjustCardMargins();
+

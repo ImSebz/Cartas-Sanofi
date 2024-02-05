@@ -55,6 +55,42 @@ body {
     cursor: pointer;
     color: #ffffff;
 }
+
+#popupCarta {
+    display: none;
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    top: 5%;
+    left: 25%;
+    z-index: 1000;
+}
+
+#popup div {
+    position: relative;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+}
+
+#popupImageCarta {
+    width: 100%;
+    height: auto;
+}
+
+#closePopupCarta {
+    position: absolute;
+    top: 28%;
+    left: 90%;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+}
 .container {
     position: relative;
     width: 100%;
@@ -163,14 +199,13 @@ body {
 }
 
 .logo-baraja {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 58px;
+    position: absolute; /* Position the logo absolutely within the container */
+    bottom: 5%; /* Align it to the bottom */
+    right: 9%;
 }
 
 .img-baraja {
-    width: 100%;
+    width: 90%;
 }
 
 .logo-sanofi-container {
@@ -181,6 +216,11 @@ body {
 
 .logo-sanofi-container img {
     width: 100%;
+}
+
+.container.hovered {
+    /* Change the appearance of the container */
+    border: 2px solid #000;
 }
 
 
@@ -264,11 +304,13 @@ body {
     }
 
     .logo-baraja {
-        margin-top: 20px;
+        position: absolute; /* Position the logo absolutely within the container */
+        bottom: 3%; /* Align it to the bottom */
+        right: 4%;
     }
-    
+
     .img-baraja {
-        width: 70%;
+        width: 80%;
     }
 
     .logo-symbols-container {
