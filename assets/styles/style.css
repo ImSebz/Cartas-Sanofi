@@ -98,7 +98,7 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
-    background-image: url('../Piezas/sanofi\ juego_Fondo.jpg');
+    background-image: url('../piezas/sanofi_fondo.jpg');
     background-size: cover;
     background-position: center;
     padding: 1.25rem;
