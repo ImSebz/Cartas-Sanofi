@@ -93,6 +93,7 @@ body {
     cursor: pointer;
     color: #ffffff;
 }
+
 .container {
     position: relative;
     width: 100%;
@@ -141,13 +142,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
+
+
 }
 
 .text-img {
     width: 90%;
-    
+
 }
 
 .cards-text {
@@ -167,7 +168,6 @@ body {
 
 .logo-symbols-container {
     width: 100px !important;
-
 }
 
 .deck-container {
@@ -201,8 +201,10 @@ body {
 }
 
 .logo-baraja {
-    position: absolute; /* Position the logo absolutely within the container */
-    bottom: 5%; /* Align it to the bottom */
+    position: absolute;
+    /* Position the logo absolutely within the container */
+    bottom: 5%;
+    /* Align it to the bottom */
     right: 9%;
 }
 
@@ -211,8 +213,10 @@ body {
 }
 
 .logo-sanofi-container {
-    position: absolute; /* Position the logo absolutely within the container */
-    bottom: 10%; /* Align it to the bottom */
+    position: absolute;
+    /* Position the logo absolutely within the container */
+    bottom: 10%;
+    /* Align it to the bottom */
     left: 5%;
 }
 
@@ -268,7 +272,7 @@ body {
         justify-content: center;
         gap: 2rem;
     }
-    
+
     .deck-container {
         width: 90%;
         margin-left: 5%;
@@ -291,11 +295,11 @@ body {
         width: 9.75rem;
     }
 
-    
+
     .text-img {
         width: 100%;
     }
-    
+
     .text-container {
         margin-top: 0;
     }
@@ -306,8 +310,10 @@ body {
     }
 
     .logo-baraja {
-        position: absolute; /* Position the logo absolutely within the container */
-        bottom: 3%; /* Align it to the bottom */
+        position: absolute;
+        /* Position the logo absolutely within the container */
+        bottom: 3%;
+        /* Align it to the bottom */
         right: 4%;
     }
 
@@ -317,14 +323,14 @@ body {
 
     .logo-symbols-container {
         width: 80px !important;
-    
+
     }
 
     .logo-sanofi-container img {
         width: 90%;
     }
-    
-    
+
+
     .a-container,
     .x-container,
     .b-container,
