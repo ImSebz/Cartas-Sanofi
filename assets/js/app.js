@@ -167,7 +167,7 @@ for (let cardId of shuffleDeck) {
             containers.forEach(container => {
                 const rect = container.getBoundingClientRect();
                 if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                    // Las coordenadas de touchend están dentro del contenedor
+                    // Si las coordenadas están dentro de un contenedor, mover la tarjeta al contenedor
 
                     // Traer el tipo de la tarjeta
                     const cardType = draggedCard.id.slice(-1);
@@ -186,7 +186,6 @@ for (let cardId of shuffleDeck) {
                         draggedCard.classList.add('placed');
         
                     } else {
-                        // Si no coinciden, prevenir la caída y retornar
                         // Muestra un mensaje de popup
                         popupCarta.style.display = 'block';
                     }
