@@ -299,4 +299,13 @@ closePopupCarta.addEventListener('click', () => {
     popupCarta.style.display = 'none';
 });
 
+let audio = new Audio('assets/music/Sanofi_music.mp3');
+
+audio.onerror = function() {
+    console.log('Error: ' + audio.error);
+};
+
+document.addEventListener('click', function () {
+    audio.play();
+});
 
