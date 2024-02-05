@@ -157,10 +157,10 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.45rem;
+    font-size: 1.65rem;
     font-family: 'SanofiSerif-BoldItalic', sans-serif;
     padding: 1rem;
-    width: 85%;
+    width: 80%;
 }
 
 .logo-symbols-container {
@@ -299,7 +299,7 @@ body {
     }
 
     .cards-text {
-        font-size: 1rem;
+        font-size: 1.20rem;
         width: 90%;
     }
 
