@@ -79,7 +79,7 @@ for (let cardId of shuffleDeck) {
         // Crear una copia de la tarjeta y mover esa copia
         draggedCardCopy = cardElement.cloneNode(true);
         draggedCardCopy.style.position = 'absolute';
-        draggedCardCopy.style.pointerEvents = 'none'; // Agregar esta línea
+        draggedCardCopy.style.pointerEvents = 'none';
         document.body.appendChild(draggedCardCopy);
     });
 
